@@ -15,7 +15,7 @@ create_setup:
 
 copy_credentials:
   file.recurse:
-    - name:{{ install_map.get('credentials_dir') }}
+    - name: {{ install_map.get('credentials_dir') }}
     - source: salt://credentials
     - include_empty: True
     - makedirs: True
