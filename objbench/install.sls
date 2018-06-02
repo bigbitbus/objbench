@@ -3,7 +3,9 @@ install_objbench:
   git.latest:
     - name: {{ install_map.get('git_url') }}
     - target: {{ install_map.get('install_dir') }}
-    - rev: master
+    - rev: {{ install_map.get('git_rev') }}
+    - branch: {{ install_map.get('git_rev') }}
+    - force_reset: True
 
   pip.installed:
     - name: objectbench_requirements
