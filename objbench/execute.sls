@@ -24,7 +24,7 @@ run_objbench_gcp:
   cmd.run:
     - names: 
       - source {{ install_map.get('credentials_dir') }}/gcp.sh
-      - python gcpexercizer.py {{ execute_map.get('data_dir') }}'
+      - python gcpexercizer.py {{ execute_map.get('data_dir') }}
     - cwd: {{ install_map.get('install_dir') }}
 
 
