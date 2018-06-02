@@ -6,6 +6,7 @@
     'common': {
         'git_url': ' https://github.com/bigbitbus/objectbench.git',
         'install_dir' : '/tmp/objbench',
+        'git_rev': 'objtest1',
     }
 
 }, grain='os_family', merge=salt['pillar.get']('objbench:install:lookup'), default='Debian', base='common')%}
@@ -16,8 +17,6 @@
     'RedHat': {
     },    
     'common': {
-        'git_url': 'https://github.com/bigbitbus/objectbench.git',
-        'git_rev': 'objtest1',
         'install_dir' : '/tmp/objbench',
         'output_dir': '/tmp/outputdata/objbench'
     }
