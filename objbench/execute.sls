@@ -15,7 +15,7 @@ create_setup:
 
 copy_credentials:
   file.recurse:
-    - name: {{ install_map.get('credentials_dir') }}
+    - name: {{ execute_map.get('credentials_dir') }}
     - source: salt://credentials
     - include_empty: True
     - makedirs: True
@@ -23,7 +23,7 @@ copy_credentials:
 run_objbench_gcp:
   cmd.run:
     - names: 
-      - source {{ install_map.get('credentials_dir') }}/gcp.sh
+      - source {{ execute_map.get('credentials_dir') }}/gcp.sh
       - python gcpexercizer.py {{ execute_map.get('data_dir') }}
     - cwd: {{ install_map.get('install_dir') }}
 
