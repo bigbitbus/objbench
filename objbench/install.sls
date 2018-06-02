@@ -8,6 +8,4 @@ install_objbench:
   pip.installed:
     - name: objectbench_requirements
     - requirements: {{ install_map.get('install_dir') }}/requirements.txt
-
-
-
+  

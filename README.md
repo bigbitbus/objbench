@@ -1,5 +1,6 @@
 # Synopsis
 [Object Bench](https://github.com/bigbitbus/objectbench) is a load generation tool to measure object store latencies of different public cloud providers. This [salt formula](https://docs.saltstack.com/en/latest/topics/development/conventions/formulas.html) can be used to install and execute it.
+
 # Usage Example
 
 There are 2 states:

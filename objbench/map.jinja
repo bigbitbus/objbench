@@ -8,5 +8,18 @@
         'install_dir' : '/tmp/objbench',
     }
 
+}, grain='os_family', merge=salt['pillar.get']('objbench:install:lookup'), default='Debian', base='common')%}
+
+{% set execute_objbench = salt['grains.filter_by']({
+    'Debian': {
+    },
+    'RedHat': {
+    },    
+    'common': {
+        'git_url': ' https://github.com/bigbitbus/objectbench.git',
+        'install_dir' : '/tmp/objbench',
+        'output_dir': '/tmp/outputdata/objbench'
+    }
+
 }, grain='os_family', merge=salt['pillar.get']('objbench:execute:lookup'), default='Debian', base='common')%}
 
