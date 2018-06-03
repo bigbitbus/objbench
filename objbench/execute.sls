@@ -1,6 +1,6 @@
 {% from "objbench/map.jinja" import install_objbench as install_map with context %}
 {% from "objbench/map.jinja" import execute_objbench as execute_map with context %}
-
+{% set gcpjsonfile = salt['pillar.get']('gcpjsonfile','NO_GCP_CREDENTIALS') %}
 create_setup:
   file.directory:
     - names: 
@@ -26,7 +26,7 @@ run_objbench_gcp:
     - name: python gcpexercizer.py {{ execute_map.get('data_dir') }}
     - cwd: {{ install_map.get('install_dir') }}
     -env:
-      GOOGLE_APPLICATION_CREDENTIALS: {{ __salt__['pillar.get']('gcpjsonfile') }}
+      GOOGLE_APPLICATION_CREDENTIALS: {{ gcpjsonfile }}
 
 
 
