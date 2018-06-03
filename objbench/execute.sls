@@ -19,6 +19,7 @@ copy_credentials:
     - source: salt://credentials
     - include_empty: True
     - makedirs: True
+    - mode: 755 # some permission 
 
 run_objbench_gcp:
   cmd.run:
