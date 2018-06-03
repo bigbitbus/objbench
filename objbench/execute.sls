@@ -15,6 +15,7 @@ create_setup:
     - makedirs: True
 
 {% for prefix in file_prefix %}
+create_data_{{ prefix }}:
   cmd.run:
     - name: 'python datamaker.py {{ execute_map.get('data_dir') }} {{ prefix }}'
     - cwd: {{ install_map.get('install_dir') }}
