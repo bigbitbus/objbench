@@ -23,10 +23,11 @@ copy_credentials:
 
 run_objbench_gcp:
   cmd.run:
-    - names: 
-      - {{ execute_map.get('credentials_dir') }}/gcp.sh
-      - python gcpexercizer.py {{ execute_map.get('data_dir') }}
+    - name: python gcpexercizer.py {{ execute_map.get('data_dir') }}
     - cwd: {{ install_map.get('install_dir') }}
+    -env:
+      GOOGLE_APPLICATION_CREDENTIALS: {{ __salt__['pillar.get']('gcpjsonfile') }}
+
 
 
 
