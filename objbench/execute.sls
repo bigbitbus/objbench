@@ -34,6 +34,7 @@ run_objbench_gcp:
     - cwd: {{ install_map.get('install_dir') }}
     - env:
       - GOOGLE_APPLICATION_CREDENTIALS: {{ execute_map.get('credentials_dir') }}/{{ gcpjsonfile }}
+    - requires: create_setup
 {% endif %}
 
 {% if platformgrain == 'azure' %}
@@ -44,7 +45,7 @@ run_objbench_azure:
     - env:
       - AZBLOBACCOUNT: {{ AZBLOBACCOUNT }}
       - AZBLOBKEY: {{ AZBLOBKEY }}
-
+    - requires: create_setup
 {% endif %}
 
 {% if platformgrain == 'aws' %}
@@ -55,7 +56,7 @@ run_objbench_aws:
     - env:
       - S3KEY: {{ S3KEY }}
       - S3SECRET: {{ S3SECRET }}
-      
+    - requires: create_setup      
 {% endif %}
 
 
