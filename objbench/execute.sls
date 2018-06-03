@@ -25,8 +25,8 @@ run_objbench_gcp:
   cmd.run:
     - name: python gcpexercizer.py {{ execute_map.get('data_dir') }}
     - cwd: {{ install_map.get('install_dir') }}
-    -env:
-      GOOGLE_APPLICATION_CREDENTIALS: {{ gcpjsonfile }}
+    - env:
+      - GOOGLE_APPLICATION_CREDENTIALS: {{ gcpjsonfile }}
 
 
 
