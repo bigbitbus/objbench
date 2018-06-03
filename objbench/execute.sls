@@ -1,5 +1,6 @@
 {% from "objbench/map.jinja" import install_objbench as install_map with context %}
 {% from "objbench/map.jinja" import execute_objbench as execute_map with context %}
+{% set file_prefix = salt['pillar.get']('file_prefix', ['file_']) %}
 {% set gcpjsonfile = salt['pillar.get']('gcpjsonfile','NO_GCP_CREDENTIALS') %}
 {% set AZBLOBACCOUNT = salt['pillar.get']('AZBLOBACCOUNT','NO_AZURE_ACCOUNT') %}
 {% set AZBLOBKEY = salt['pillar.get']('AZBLOBKEY','NO_AZURE_KEY') %}
@@ -13,10 +14,12 @@ create_setup:
       - {{ execute_map.get('data_dir') }}
     - makedirs: True
 
+{% for prefix in file_prefix %}
   cmd.run:
-    - name: 'python datamaker.py {{ execute_map.get('data_dir') }}'
+    - name: 'python datamaker.py {{ execute_map.get('data_dir') }} {{ prefix }}'
     - cwd: {{ install_map.get('install_dir') }}
     - requires: file.directory
+{% endif %}
 
 {% if platformgrain == 'gcp' %}
 copy_credentials:
