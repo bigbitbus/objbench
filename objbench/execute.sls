@@ -19,7 +19,7 @@ create_setup:
     - name: 'python datamaker.py {{ execute_map.get('data_dir') }} {{ prefix }}'
     - cwd: {{ install_map.get('install_dir') }}
     - requires: file.directory
-{% endif %}
+{% endfor %}
 
 {% if platformgrain == 'gcp' %}
 copy_credentials:
