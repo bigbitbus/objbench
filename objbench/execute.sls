@@ -42,8 +42,9 @@ run_objbench_azure:
     - name: "python azureexercizer.py {{ execute_map.get('data_dir') }}"
     - cwd: {{ install_map.get('install_dir') }}
     - env:
-      - S3KEY: {{ S3KEY }}
-      - S3SECRET: {{ S3SECRET }}
+      - AZBLOBACCOUNT: {{ AZBLOBACCOUNT }}
+      - AZBLOBKEY: {{ AZBLOBKEY }}
+
 {% endif %}
 
 {% if platformgrain == 'aws' %}
@@ -52,8 +53,9 @@ run_objbench_aws:
     - name: "python awsexercizer.py {{ execute_map.get('data_dir') }}"
     - cwd: {{ install_map.get('install_dir') }}
     - env:
-      - AZBLOBACCOUNT: {{ AZBLOBACCOUNT }}
-      - AZBLOBKEY: {{ AZBLOBKEY }}
+      - S3KEY: {{ S3KEY }}
+      - S3SECRET: {{ S3SECRET }}
+      
 {% endif %}
 
 
