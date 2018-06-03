@@ -5,7 +5,7 @@
 {% set AZBLOBKEY = salt['pillar.get']('AZBLOBKEY','NO_AZURE_KEY') %}
 {% set S3KEY = salt['pillar.get']('S3KEY','NO_AWS_KEY') %}
 {% set S3SECRET = salt['pillar.get']('S3SECRET','NO_AWS_SECRET') %}
-{% set platformgrain = salt['grains.get']('cloudplatform') %}
+{% set platformgrain = salt['grains.get']('platformgrain') %}
 create_setup:
   file.directory:
     - names: 
