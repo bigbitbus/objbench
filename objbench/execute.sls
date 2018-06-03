@@ -1,6 +1,6 @@
 {% from "objbench/map.jinja" import install_objbench as install_map with context %}
 {% from "objbench/map.jinja" import execute_objbench as execute_map with context %}
-{% set file_prefix = salt['pillar.get']('file_prefix', ['file_']) %}
+{% set file_prefix = execute_map.get('file_prefix','file_') %}
 {% set gcpjsonfile = salt['pillar.get']('gcpjsonfile','NO_GCP_CREDENTIALS') %}
 {% set AZBLOBACCOUNT = salt['pillar.get']('AZBLOBACCOUNT','NO_AZURE_ACCOUNT') %}
 {% set AZBLOBKEY = salt['pillar.get']('AZBLOBKEY','NO_AZURE_KEY') %}
