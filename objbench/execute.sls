@@ -33,7 +33,7 @@ run_objbench_gcp:
     - name: "python gcpexercizer.py {{ execute_map.get('data_dir') }}"
     - cwd: {{ install_map.get('install_dir') }}
     - env:
-      - GOOGLE_APPLICATION_CREDENTIALS: {{ gcpjsonfile }}
+      - GOOGLE_APPLICATION_CREDENTIALS: {{ execute_map.get('credentials_dir') }}/{{ gcpjsonfile }}
 {% endif %}
 
 {% if platformgrain == 'azure' %}
