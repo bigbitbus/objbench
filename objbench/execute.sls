@@ -1,6 +1,7 @@
 {% from "objbench/map.jinja" import install_objbench as install_map with context %}
 {% from "objbench/map.jinja" import execute_objbench as execute_map with context %}
-{% set file_prefix = execute_map.get('file_prefix','file_') %}
+{% set numIters = execute_map.get('numIters','file_') %}
+{% set fileSizeskb = execute_map.get('fileSizeskb','1 100 1000') %}
 {% set gcpjsonfile = salt['pillar.get']('gcpjsonfile','NO_GCP_CREDENTIALS') %}
 {% set AZBLOBACCOUNT = salt['pillar.get']('AZBLOBACCOUNT','NO_AZURE_ACCOUNT') %}
 {% set AZBLOBKEY = salt['pillar.get']('AZBLOBKEY','NO_AZURE_KEY') %}
@@ -14,14 +15,6 @@ create_setup:
       - {{ execute_map.get('data_dir') }}
     - makedirs: True
 
-{% for prefix in file_prefix %}
-create_data_{{ prefix }}:
-  cmd.run:
-    - name: 'python datamaker.py {{ execute_map.get('data_dir') }} {{ prefix }}'
-    - cwd: {{ install_map.get('install_dir') }}
-    - requires: file.directory
-{% endfor %}
-
 {% if platformgrain == 'gcp' %}
 copy_credentials:
   file.managed:
@@ -34,7 +27,7 @@ copy_credentials:
 
 run_objbench_gcp:
   cmd.run:
-    - name: "python gcpexercizer.py {{ execute_map.get('data_dir') }}"
+    - name: "python gcpexercizer.py {{ execute_map.get('data_dir') }} {{ numIters }} {{ fileSizeskb }}"
     - cwd: {{ install_map.get('install_dir') }}
     - env:
       - GOOGLE_APPLICATION_CREDENTIALS: {{ execute_map.get('credentials_dir') }}/{{ gcpjsonfile }}
@@ -44,7 +37,7 @@ run_objbench_gcp:
 {% if platformgrain == 'azure' %}
 run_objbench_azure:
   cmd.run:
-    - name: "python azureexercizer.py {{ execute_map.get('data_dir') }}"
+    - name: "python azureexercizer.py {{ execute_map.get('data_dir') }} {{ numIters }} {{ fileSizeskb }}"
     - cwd: {{ install_map.get('install_dir') }}
     - env:
       - AZBLOBACCOUNT: {{ AZBLOBACCOUNT }}
@@ -55,7 +48,7 @@ run_objbench_azure:
 {% if platformgrain == 'aws' %}
 run_objbench_aws:
   cmd.run:
-    - name: "python awsexercizer.py {{ execute_map.get('data_dir') }}"
+    - name: "python awsexercizer.py {{ execute_map.get('data_dir') }} {{ numIters }} {{ fileSizeskb }}"
     - cwd: {{ install_map.get('install_dir') }}
     - env:
       - S3KEY: {{ S3KEY }}
