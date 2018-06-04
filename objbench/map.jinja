@@ -21,8 +21,8 @@
         'output_dir': '/tmp/outputdata/objbench',
         'data_dir': '/tmpdata',
         'credentials_dir': '/root/credentials',
-        'numIters': 5,
-        'fileSizeskb': "1 4 8 10 15 20 25 30"
+        'numIters': 20,
+        'fileSizeskb': "1 4 8 10 15 20 25 30 40 50 75 100"
     }
 
 }, grain='os_family', merge=salt['pillar.get']('objbench:execute:lookup'), default='Debian', base='common')%}
