@@ -22,7 +22,7 @@
         'data_dir': '/tmpdata',
         'credentials_dir': '/root/credentials',
         'numIters': 100,
-        'fileSizeskb': "1 4 10 20 50 100 500 1000 5000 10000 50000 100000"
+        'fileSizeskb': "1 4 10 20 50 100 500 1000 5000 10000 50000 100000 500000"
     }
 
 }, grain='os_family', merge=salt['pillar.get']('objbench:execute:lookup'), default='Debian', base='common')%}
