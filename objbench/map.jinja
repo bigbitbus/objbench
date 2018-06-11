@@ -9,7 +9,7 @@
         'git_rev': 'objtest1',
     }
 
-}, grain='os_family', merge=salt['pillar.get']('objbench:install:lookup'), default='Debian', base='common')%}
+}, grain='os_family', merge=salt['pillar.get']('objbench:lookup:install'), default='Debian', base='common')%}
 
 {% set execute_objbench = salt['grains.filter_by']({
     'Debian': {
@@ -27,5 +27,5 @@
         'fileSizeskb': "1 4 10 20 50 100 500 1000 5000 10000 50000 100000"
     }
 
-}, grain='os_family', merge=salt['pillar.get']('objbench:execute:lookup'), default='Debian', base='common')%}
+}, grain='os_family', merge=salt['pillar.get']('objbench:lookup:execute'), default='Debian', base='common')%}
 
